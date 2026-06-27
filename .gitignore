@@ -1,0 +1,8 @@
+cat << 'EOF' > .gitignore
+__pycache__/
+*.py[cod]
+.pytest_cache/
+mlruns/
+.env
+.DS_Store
+EOF
