@@ -1,7 +1,7 @@
 import pandas as pd
 
 def _map_binary_series(s: pd.Series) -> pd.Series:
-    vals = list(pd.Series(s.dropna().unique()).astype(int))
+    vals = list(pd.Series(s.dropna().unique()).astype(str))
     valset = set(vals)
 
     if valset == {"Yes", "No"}:
@@ -17,16 +17,16 @@ def _map_binary_series(s: pd.Series) -> pd.Series:
     
     return s
 
-def build_features(s: pd.Series, target_col: str = "Churn") -> pd.Series:
+def build_features(df: pd.DataFrame, target_col: str = "Churn") -> pd.Series:
     df = df.copy()
 
-    obj_cols = [c for col in df.select_dtypes(include = ["object"]).columns if c != target_col]
-    num_cols = [c for col in df.select_dtypes(include = ["int64", "float64"]).columns if c != target_col]
+    obj_cols = [col for col in df.select_dtypes(include = ["object"]).columns if col != target_col]
+    num_cols = [col for col in df.select_dtypes(include = ["int64", "float64"]).columns if col != target_col]
 
     print(f"Found {len(obj_cols)} object columns and {len(num_cols)} numeric columns.")
 
-    binary_cols = [c for c in df.columns if df[c].dropna().unique() == 2]
-    multi_cols = [c for c in df.columns if df[c].dropna().unique() > 2]
+    binary_cols = [c for c in obj_cols if df[c].dropna().nunique() == 2]
+    multi_cols = [c for c in obj_cols if df[c].dropna().nunique() > 2]
 
     print(f"Found {len(binary_cols)} binary columns and {len(multi_cols)} multi-category features.")
     if binary_cols:

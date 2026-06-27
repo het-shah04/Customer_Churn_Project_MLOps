@@ -20,3 +20,14 @@ scripts:
 - Pipeline orchestration script: ties everything together in a reproducible training flow (load->validate->preprocess->feature engineering)
 - Experiment tracking (MLFlow): logging everything
 - 
+
+FastAPI:
+- FastAPI provides API to run the model from anywhere.
+- We will put the model in a docker container and add it to either docker hub or ECR.
+- Then, deploy it to AWS.
+- FastAPI turns model into an API that can receive data and return predictions.
+- Gradio Web UI.
+- root is to health check the API endpoint for monitoring and load balancing checks.
+- CustomerData class is created to define a structure of how the customer data should look.
+- app.post("/predict") is used to make predictions
+- Main components: app (initialising the FastAPI app), root (app.get, for health check), customerdata pydantic model, get_prediction (app.post) 

@@ -4,7 +4,7 @@ import numpy as np
 def preprocess_data(df: pd.DataFrame, target_col: str = "Churn") -> pd.DataFrame:
     df.columns = df.columns.str.strip()
 
-    for col in ["customID", "CustomerID", "customer_id"]:
+    for col in ["customerID", "customID", "CustomerID", "customer_id"]:
         if col in df.columns:
             df = df.drop(columns = [col])
     
