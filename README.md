@@ -35,6 +35,6 @@ FastAPI:
 
 containerization and CI/CD:
 - dockerfile: set a python version to use -> set the working directory -> copy the requirements.txt file -> run upgrade pip and install requirements.txt -> copy the entire project -> copy the ML models -> 
-
+- Github actions will be used for CI/CD. Github actions help to push the docker image to docker hub.
 
 
