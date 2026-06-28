@@ -10,6 +10,7 @@ import argparse
 import pandas as pd
 import mlflow
 import mlflow.sklearn
+import mlflow.xgboost
 from posthog import project_root
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import (
@@ -35,7 +36,8 @@ def main(args):
     """
     
     # === MLflow Setup - ESSENTIAL for experiment tracking ===
-    # Configure MLflow to use local file-based tracking (not a tracking server)
+    # Configure MLflow to use local file-based tracking
+    os.environ["MLFLOW_ALLOW_FILE_STORE"] = "true"
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     mlruns_path = args.mlflow_uri or f"file://{project_root}/mlruns"  # Local file-based tracking
     mlflow.set_tracking_uri(mlruns_path)
@@ -201,8 +203,7 @@ def main(args):
 
         # === STAGE 7: Model Serialization and Logging ===
         print("💾 Saving model to MLflow...")
-        # ESSENTIAL: Log model in MLflow's standard format for serving
-        mlflow.sklearn.log_model(
+        mlflow.xgboost.log_model(
             model, 
             artifact_path="model"  # This creates a 'model/' folder in MLflow run artifacts
         )

@@ -31,3 +31,10 @@ FastAPI:
 - CustomerData class is created to define a structure of how the customer data should look.
 - app.post("/predict") is used to make predictions
 - Main components: app (initialising the FastAPI app), root (app.get, for health check), customerdata pydantic model, get_prediction (app.post) 
+
+
+containerization and CI/CD:
+- dockerfile: set a python version to use -> set the working directory -> copy the requirements.txt file -> run upgrade pip and install requirements.txt -> copy the entire project -> copy the ML models -> 
+
+
+

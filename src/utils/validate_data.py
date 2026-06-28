@@ -1,9 +1,13 @@
+import pandas as pd
 import great_expectations as ge
-from typing import Tuple, list
+from typing import Tuple, List
 
-def validate_telco_data(df) -> Tuple[bool, List(str)]:
+def validate_telco_data(df) -> Tuple[bool, List[str]]:
     print("Starting data validation with Great Expectations")
 
+    df = df.copy()
+    if "TotalCharges" in df.columns:
+        df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
     ge_df = ge.dataset.PandasDataset(df)
 
     print("Validating schema and required columns")
