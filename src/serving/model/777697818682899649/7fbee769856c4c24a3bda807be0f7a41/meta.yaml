@@ -1,0 +1,14 @@
+artifact_uri: /home/het22213/myprojs/MLOps/my_impl/src/serving/model/777697818682899649/7fbee769856c4c24a3bda807be0f7a41/artifacts
+end_time: 1782637352794
+entry_point_name: ''
+experiment_id: '777697818682899649'
+lifecycle_stage: active
+run_id: 7fbee769856c4c24a3bda807be0f7a41
+run_name: whimsical-hound-963
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782637348114
+status: 3
+tags: []
+user_id: het22213

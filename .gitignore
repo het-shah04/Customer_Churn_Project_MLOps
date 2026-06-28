@@ -5,4 +5,7 @@ mlruns/
 .env
 .DS_Store
 
-/data
+data/raw/
+data/processed/
+.dl_env/
+dl_env/
